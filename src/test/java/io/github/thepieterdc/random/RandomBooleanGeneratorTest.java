@@ -9,6 +9,7 @@ package io.github.thepieterdc.random;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -16,7 +17,7 @@ import static org.junit.Assert.*;
  */
 public class RandomBooleanGeneratorTest {
 	/**
-	 * Tests generate() using only one probability.
+	 * Tests #generate() using only one probability.
 	 */
 	@Test
 	public void testOnlyProbability() {
@@ -27,11 +28,11 @@ public class RandomBooleanGeneratorTest {
 			amountTrue += rng.generate() ? 1 : 0;
 		}
 		
-		assertEquals(1000, amountTrue);
+		assertThat(amountTrue, is(1000));
 	}
 	
 	/**
-	 * Tests generate() using an uniform probability (50%).
+	 * Tests #generate() using an uniform probability (50%).
 	 */
 	@Test
 	public void testUniformProbability() {
@@ -46,7 +47,7 @@ public class RandomBooleanGeneratorTest {
 	}
 	
 	/**
-	 * Tests generate() using zero probability.
+	 * Tests #generate() using zero probability.
 	 */
 	@Test
 	public void testZeroProbability() {
@@ -57,6 +58,6 @@ public class RandomBooleanGeneratorTest {
 			amountTrue += rng.generate() ? 1 : 0;
 		}
 		
-		assertEquals(0, amountTrue);
+		assertThat(amountTrue, is(0));
 	}
 }
