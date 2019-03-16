@@ -2,7 +2,7 @@ language: java
 sudo: false
 jdk:
   - oraclejdk8
-  - oraclejdk9
+  - oraclejdk11
 install: true
 after_success:
   - bash <(curl -s https://codecov.io/bash)
