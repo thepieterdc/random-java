@@ -13,14 +13,5 @@ import java.util.Random;
  * An abstract random generator.
  */
 public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
-	private final Random rng = new Random();
-	
-	/**
-	 * Gets the random generator instance.
-	 *
-	 * @return random generator
-	 */
-	public Random getRNG() {
-		return this.rng;
-	}
+	protected final Random rng = new Random();
 }

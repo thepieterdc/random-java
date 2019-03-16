@@ -30,6 +30,6 @@ public class RandomBooleanGenerator extends AbstractRandomGenerator<Boolean> {
 	}
 	
 	public Boolean generate() {
-		return this.getRNG().nextDouble() < this.trueProbability;
+		return this.rng.nextDouble() < this.trueProbability;
 	}
 }
