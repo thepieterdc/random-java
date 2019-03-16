@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright (c) 2019. All rights reserved.
+  ~
+  ~ @author Pieter De Clercq
+  ~
+  ~ https://github.com/thepieterdc/random-java
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.thepieterdc.random</groupId>
+    <artifactId>random</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Random</name>
+    <description>Random generators, for usage in unit tests</description>
+    <packaging>jar</packaging>
+    <url>https://github.com/thepieterdc/random-java</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/thepieterdc/random-java.git</connection>
+        <developerConnection>scm:git:git@github.com:thepieterdc/random-java.git</developerConnection>
+        <url>git@github.com:thepieterdc/random-java.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/thepieterdc/random-jaa</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>TravisCI</system>
+        <url>https://travis.com/thepieterdc/random-java</url>
+    </ciManagement>
+</project>
