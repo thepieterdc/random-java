@@ -7,17 +7,16 @@
  */
 package io.github.thepieterdc.random.textual.letter;
 
-import io.github.thepieterdc.random.AbstractRandomGenerator;
-
 /**
  * Generates a random lowercase letter.
  */
-public class RandomLowercaseLetterGenerator extends AbstractRandomGenerator<Character> {
+public class RandomLowercaseLetterGenerator extends AbstractRandomLetterGenerator {
 	private static final String ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
 	
-	@Override
-	public Character generate() {
-		final int position = this.rng.nextInt(ALPHA_LOWER.length());
-		return ALPHA_LOWER.charAt(position);
+	/**
+	 * RandomLowercaseLetterGenerator constructor.
+	 */
+	public RandomLowercaseLetterGenerator() {
+		super(ALPHA_LOWER);
 	}
 }
