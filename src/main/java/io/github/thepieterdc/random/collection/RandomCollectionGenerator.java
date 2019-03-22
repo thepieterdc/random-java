@@ -58,7 +58,17 @@ public class RandomCollectionGenerator extends AbstractRandomGenerator<String> {
 				new RuntimeException(String.format("The required resource %s could not be found.", dataset.getPath()))
 			);
 		
-		try (Stream<String> lines = Files.lines(path)) {
+		return of(path);
+	}
+	
+	/**
+	 * Constructs a new RandomCollectionGenerator from a given file.
+	 *
+	 * @param file the input file
+	 * @return the random generator instance
+	 */
+	public static RandomGenerator<String> of(final Path file) {
+		try (Stream<String> lines = Files.lines(file)) {
 			return new RandomCollectionGenerator(lines.collect(Collectors.toList()));
 		} catch (final IOException ex) {
 			throw new RuntimeException(ex.getMessage(), ex);
