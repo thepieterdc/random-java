@@ -5,10 +5,9 @@
  *
  * https://github.com/thepieterdc/random-java
  */
-package io.github.thepieterdc.random.collection.datasets.sports;
+package io.github.thepieterdc.random.collection.datasets.geo;
 
 import io.github.thepieterdc.random.collection.Dataset;
-import io.github.thepieterdc.random.collection.datasets.geo.CountriesDataset;
 import org.junit.Assert;
 import org.junit.Test;
 
