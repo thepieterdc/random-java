@@ -15,7 +15,23 @@ import java.util.Random;
  * An abstract random generator.
  */
 public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
-	protected final Random rng = new Random();
+	protected final Random rng;
+	
+	/**
+	 * AbstractRandomGenerator constructor.
+	 *
+	 * @param seed the random seed
+	 */
+	protected AbstractRandomGenerator(final long seed) {
+		this.rng = new Random(seed);
+	}
+	
+	/**
+	 * AbstractRandomGenerator constructor.
+	 */
+	protected AbstractRandomGenerator() {
+		this.rng = new Random();
+	}
 	
 	@Override
 	public Collection<T> generate(int amount, int maxTries) {

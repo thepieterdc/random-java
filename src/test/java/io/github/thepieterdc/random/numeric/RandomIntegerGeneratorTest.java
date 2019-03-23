@@ -9,13 +9,14 @@ package io.github.thepieterdc.random.numeric;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
+import io.github.thepieterdc.random.numeric.integer.RandomIntegerGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
- * Tests io.github.thepieterdc.random.numeric.RandomIntegerGenerator.
+ * Tests io.github.thepieterdc.random.numeric.integer.RandomIntegerGenerator.
  */
 public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
 	@Override
