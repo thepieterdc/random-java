@@ -14,6 +14,11 @@ import io.github.thepieterdc.random.AbstractRandomGenerator;
  */
 public class RandomLongGenerator extends AbstractRandomGenerator<Long> {
 	@Override
+	public long capacity() {
+		return Long.MAX_VALUE;
+	}
+	
+	@Override
 	public Long generate() {
 		return this.rng.nextLong();
 	}

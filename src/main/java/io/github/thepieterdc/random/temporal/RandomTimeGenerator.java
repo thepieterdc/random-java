@@ -20,6 +20,11 @@ public class RandomTimeGenerator extends AbstractRandomGenerator<LocalTime> {
 	private static final int SECONDS_PER_MINUTE = 60;
 	
 	@Override
+	public long capacity() {
+		return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE;
+	}
+	
+	@Override
 	public LocalTime generate() {
 		final int hours = this.rng.nextInt(HOURS_PER_DAY);
 		final int minutes = this.rng.nextInt(MINUTES_PER_HOUR);
