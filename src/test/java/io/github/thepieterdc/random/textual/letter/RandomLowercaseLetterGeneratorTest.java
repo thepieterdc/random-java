@@ -7,6 +7,7 @@
  */
 package io.github.thepieterdc.random.textual.letter;
 
+import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +18,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 /**
  * Tests io.github.thepieterdc.random.textual.letter.RandomLowercaseLetterGenerator.
  */
-public class RandomLowercaseLetterGeneratorTest {
+public class RandomLowercaseLetterGeneratorTest extends AbstractRandomGeneratorTest<Character> {
+	@Override
+	protected RandomGenerator<Character> getDefaultRandomGenerator() {
+		return new RandomLowercaseLetterGenerator();
+	}
+	
 	/**
 	 * Tests #generate().
 	 */

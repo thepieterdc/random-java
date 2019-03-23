@@ -7,6 +7,7 @@
  */
 package io.github.thepieterdc.random.temporal;
 
+import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,7 +19,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 /**
  * Tests io.github.thepieterdc.random.temporal.RandomTimeGenerator.
  */
-public class RandomTimeGeneratorTest {
+public class RandomTimeGeneratorTest extends AbstractRandomGeneratorTest<LocalTime> {
+	@Override
+	protected RandomGenerator<LocalTime> getDefaultRandomGenerator() {
+		return new RandomTimeGenerator();
+	}
+	
 	/**
 	 * Tests #generate().
 	 */

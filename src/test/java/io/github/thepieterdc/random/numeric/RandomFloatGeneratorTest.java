@@ -7,21 +7,32 @@
  */
 package io.github.thepieterdc.random.numeric;
 
+import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
  * Tests io.github.thepieterdc.random.numeric.RandomFloatGenerator.
  */
-public class RandomFloatGeneratorTest {
+public class RandomFloatGeneratorTest extends AbstractRandomGeneratorTest<Float> {
+	@Override
+	protected RandomGenerator<Float> getDefaultRandomGenerator() {
+		return new RandomFloatGenerator();
+	}
+	
 	/**
 	 * Tests #generate().
 	 */
 	@Test
 	public void testGenerate() {
 		final RandomGenerator<Float> generator = new RandomFloatGenerator();
+		Assert.assertThat(generator, notNullValue());
+		
 		for (int i = 0; i < 100; ++i) {
-			generator.generate();
+			Assert.assertThat(generator.generate(), notNullValue());
 		}
 	}
 }

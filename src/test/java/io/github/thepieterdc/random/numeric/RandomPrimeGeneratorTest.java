@@ -7,6 +7,7 @@
  */
 package io.github.thepieterdc.random.numeric;
 
+import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +18,12 @@ import static org.hamcrest.CoreMatchers.not;
 /**
  * Tests io.github.thepieterdc.random.numeric.RandomPrimeGenerator.
  */
-public class RandomPrimeGeneratorTest {
+public class RandomPrimeGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
+	@Override
+	protected RandomGenerator<Integer> getDefaultRandomGenerator() {
+		return new RandomPrimeGenerator();
+	}
+	
 	/**
 	 * Tests #generate().
 	 */

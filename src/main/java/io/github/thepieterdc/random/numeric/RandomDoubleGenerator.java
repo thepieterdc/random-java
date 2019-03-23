@@ -14,12 +14,12 @@ import io.github.thepieterdc.random.AbstractRandomGenerator;
  */
 public class RandomDoubleGenerator extends AbstractRandomGenerator<Double> {
 	@Override
-	public long capacity() {
-		return Integer.MAX_VALUE;
+	public Double generate() {
+		return this.rng.nextDouble();
 	}
 	
 	@Override
-	public Double generate() {
-		return this.rng.nextDouble();
+	public int getCapacity() {
+		return Integer.MAX_VALUE;
 	}
 }

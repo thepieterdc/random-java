@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.hamcrest.CoreMatchers.*;
 
@@ -27,7 +29,7 @@ public class RandomCollectionGeneratorTest {
 	 */
 	@Test
 	public void testAdd() {
-		final RandomCollectionGenerator<String> generator = new RandomCollectionGenerator<>(Collections.singleton("test"));
+		final RandomCollectionGenerator<String> generator = RandomCollectionGenerator.of(Collections.singleton("test"));
 		Assert.assertThat(generator, notNullValue());
 		
 		int test2counts = 0;
@@ -55,7 +57,7 @@ public class RandomCollectionGeneratorTest {
 	 */
 	@Test
 	public void testAddCollection() {
-		final RandomCollectionGenerator<String> generator = new RandomCollectionGenerator<>(Collections.singleton("test"));
+		final RandomCollectionGenerator<String> generator = RandomCollectionGenerator.of(Collections.singleton("test"));
 		Assert.assertThat(generator, notNullValue());
 		
 		int test2counts = 0;
@@ -84,11 +86,23 @@ public class RandomCollectionGeneratorTest {
 	}
 	
 	/**
+	 * Tests #capacity().
+	 */
+	@Test
+	public void testCapacity() {
+		final int amount = 10;
+		final Collection<Integer> ints = IntStream.range(0, amount).boxed().collect(Collectors.toSet());
+		final RandomGenerator<Integer> rng = RandomCollectionGenerator.of(ints);
+		Assert.assertThat(rng, notNullValue());
+		Assert.assertThat(rng.getCapacity(), is(amount));
+	}
+	
+	/**
 	 * Tests the constructor using an empty collection.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testEmptyCollection() {
-		new RandomCollectionGenerator<>(Collections.emptySet());
+		RandomCollectionGenerator.of(Collections.emptySet());
 	}
 	
 	/**
@@ -100,11 +114,51 @@ public class RandomCollectionGeneratorTest {
 			"Test1", "Test2", "Test3", "Test4"
 		);
 		
-		final RandomGenerator<String> generator = new RandomCollectionGenerator<>(data);
+		final RandomGenerator<String> generator = RandomCollectionGenerator.of(data);
 		
 		for (int i = 0; i < 100; ++i) {
 			Assert.assertThat(data, hasItem(generator.generate()));
 		}
+	}
+	
+	/**
+	 * Tests #generate(amount, maxtries) using a negative amount
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGenerateAmountNegative() {
+		final RandomGenerator<String> instance = RandomCollectionGenerator.of(Collections.singleton("test"));
+		Assert.assertThat(instance, notNullValue());
+		
+		instance.generate(-1, 1);
+	}
+	
+	/**
+	 * Tests #generate(amount, maxtries) using an amount value that is higher
+	 * than the capacity.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGenerateAmountTooHigh() {
+		final RandomGenerator<String> instance = RandomCollectionGenerator.of(Collections.singleton("test"));
+		Assert.assertThat(instance, notNullValue());
+		
+		final long capacity = instance.getCapacity();
+		instance.generate((int) capacity + 1, 1);
+	}
+	
+	/**
+	 * Tests #generate(amount, maxtries).
+	 */
+	@Test
+	public void testGenerateMultiple() {
+		final Collection<String> data = Arrays.asList("a", "b", "c");
+		Assert.assertThat(data, notNullValue());
+		
+		final RandomGenerator<String> instance = RandomCollectionGenerator.of(data);
+		Assert.assertThat(instance, notNullValue());
+		
+		final Collection<String> generated = instance.generate(data.size(), 1000);
+		Assert.assertThat(generated, notNullValue());
+		Assert.assertThat(generated.size(), is(data.size()));
 	}
 	
 	/**
