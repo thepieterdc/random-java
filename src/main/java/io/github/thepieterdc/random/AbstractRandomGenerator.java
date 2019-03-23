@@ -19,15 +19,6 @@ public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
 	
 	/**
 	 * AbstractRandomGenerator constructor.
-	 *
-	 * @param seed the random seed
-	 */
-	protected AbstractRandomGenerator(final long seed) {
-		this.rng = new Random(seed);
-	}
-	
-	/**
-	 * AbstractRandomGenerator constructor.
 	 */
 	protected AbstractRandomGenerator() {
 		this.rng = new Random();

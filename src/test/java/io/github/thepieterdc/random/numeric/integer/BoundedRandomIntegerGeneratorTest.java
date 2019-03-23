@@ -5,23 +5,24 @@
  *
  * https://github.com/thepieterdc/random-java
  */
-package io.github.thepieterdc.random.numeric;
+package io.github.thepieterdc.random.numeric.integer;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import io.github.thepieterdc.random.numeric.integer.RandomIntegerGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
- * Tests io.github.thepieterdc.random.numeric.integer.RandomIntegerGenerator.
+ * Tests io.github.thepieterdc.random.numeric.integer.BoundedRandomIntegerGenerator.
  */
-public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
+public class BoundedRandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
+	private final static int DEFAULT_BOUND = 1000;
+	
 	@Override
 	protected RandomGenerator<Integer> getDefaultRandomGenerator() {
-		return new RandomIntegerGenerator();
+		return new BoundedRandomIntegerGenerator(DEFAULT_BOUND);
 	}
 	
 	/**
