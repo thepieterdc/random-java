@@ -5,17 +5,17 @@
  *
  * https://github.com/thepieterdc/random-java
  */
-package io.github.thepieterdc.random.numeric;
+package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGenerator;
 
 /**
- * A random generator for float numbers.
+ * A random generator for long numbers.
  */
-public class RandomFloatGenerator extends AbstractRandomGenerator<Float> {
+public class RandomLongGenerator extends AbstractRandomGenerator<Long> {
 	@Override
-	public Float generate() {
-		return this.rng.nextFloat();
+	public Long generate() {
+		return this.rng.nextLong();
 	}
 	
 	@Override

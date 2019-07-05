@@ -5,7 +5,7 @@
  *
  * https://github.com/thepieterdc/random-java
  */
-package io.github.thepieterdc.random.numeric;
+package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
@@ -15,12 +15,12 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
- * Tests io.github.thepieterdc.random.numeric.RandomLongGenerator.
+ * Tests io.github.thepieterdc.random.numeric.RandomFloatGenerator.
  */
-public class RandomLongGeneratorTest extends AbstractRandomGeneratorTest<Long> {
+public class RandomFloatGeneratorTest extends AbstractRandomGeneratorTest<Float> {
 	@Override
-	protected RandomGenerator<Long> getDefaultRandomGenerator() {
-		return new RandomLongGenerator();
+	protected RandomGenerator<Float> getDefaultRandomGenerator() {
+		return new RandomFloatGenerator();
 	}
 	
 	/**
@@ -28,7 +28,7 @@ public class RandomLongGeneratorTest extends AbstractRandomGeneratorTest<Long> {
 	 */
 	@Test
 	public void testGenerate() {
-		final RandomGenerator<Long> generator = new RandomLongGenerator();
+		final RandomGenerator<Float> generator = new RandomFloatGenerator();
 		Assert.assertThat(generator, notNullValue());
 		
 		for (int i = 0; i < 100; ++i) {

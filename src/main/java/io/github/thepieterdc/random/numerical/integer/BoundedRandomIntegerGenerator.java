@@ -5,7 +5,7 @@
  *
  * https://github.com/thepieterdc/random-java
  */
-package io.github.thepieterdc.random.numeric.integer;
+package io.github.thepieterdc.random.numerical.integer;
 
 /**
  * A random generator for integer numbers between bounds.

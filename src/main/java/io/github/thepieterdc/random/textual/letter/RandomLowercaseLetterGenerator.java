@@ -11,7 +11,7 @@ package io.github.thepieterdc.random.textual.letter;
  * Generates a random lowercase letter.
  */
 public class RandomLowercaseLetterGenerator extends AbstractRandomLetterGenerator {
-	private static final String ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
+	public static final String ALPHA_LOWER = "abcdefghijklmnopqrstuvwxyz";
 	
 	/**
 	 * RandomLowercaseLetterGenerator constructor.
