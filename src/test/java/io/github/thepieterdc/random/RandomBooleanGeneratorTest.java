@@ -17,9 +17,9 @@ import static org.junit.Assert.assertTrue;
 /**
  * Tests io.github.thepieterdc.random.RandomBooleanGenerator.
  */
-public class RandomBooleanGeneratorTest extends AbstractRandomGeneratorTest {
+public class RandomBooleanGeneratorTest extends AbstractRandomGeneratorTest<Boolean> {
 	@Override
-	protected RandomGenerator getDefaultRandomGenerator() {
+	protected RandomGenerator<Boolean> getDefaultRandomGenerator() {
 		return new RandomBooleanGenerator();
 	}
 	

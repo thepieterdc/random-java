@@ -47,6 +47,7 @@
         <junit.version>4.12</junit.version>
         <maven.compiler.version>3.8.0</maven.compiler.version>
         <maven.jar.version>3.1.0</maven.jar.version>
+        <maven.javadoc.version>3.1.0</maven.javadoc.version>
         <maven.source.version>3.0.1</maven.source.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -84,6 +85,15 @@
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
                         </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.version}</version>
+                    <configuration>
+                        <destDir>docs</destDir>
+                        <reportOutputDirectory>${project.basedir}</reportOutputDirectory>
                     </configuration>
                 </plugin>
                 <plugin>

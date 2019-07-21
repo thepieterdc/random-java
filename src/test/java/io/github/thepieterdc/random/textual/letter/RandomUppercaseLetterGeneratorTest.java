@@ -32,7 +32,7 @@ public class RandomUppercaseLetterGeneratorTest extends AbstractRandomGeneratorT
 		final RandomGenerator<Character> rng = new RandomUppercaseLetterGenerator();
 		
 		for(int i = 0; i < 1000; ++i) {
-			Character letter = rng.generate();
+			final Character letter = rng.generate();
 			Assert.assertThat(letter, notNullValue());
 			Assert.assertThat(Character.isAlphabetic(letter), is(true));
 		}

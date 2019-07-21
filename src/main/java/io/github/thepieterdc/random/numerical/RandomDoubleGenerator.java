@@ -15,6 +15,8 @@ import io.github.thepieterdc.random.AbstractRandomGenerator;
 public class RandomDoubleGenerator extends AbstractRandomGenerator<Double> {
 	public static final RandomDoubleGenerator DEFAULT = RandomDoubleGenerator.positiveBelow(1);
 	
+	private static final double EPS = 0.00000000000000001;
+	
 	private final double lowerBound;
 	private final double upperBound;
 	
@@ -29,7 +31,7 @@ public class RandomDoubleGenerator extends AbstractRandomGenerator<Double> {
 			throw new IllegalArgumentException("Upper bound must be higher than lower bound.");
 		}
 		this.lowerBound = lower;
-		this.upperBound = upper;
+		this.upperBound = upper + (Math.abs(Double.MAX_VALUE - upper) < EPS ? 0 : EPS);
 	}
 	
 	/**
@@ -79,7 +81,7 @@ public class RandomDoubleGenerator extends AbstractRandomGenerator<Double> {
 	
 	@Override
 	public Double generate() {
-		return this.rng.nextDouble(this.lowerBound, this.upperBound + 1);
+		return this.rng.nextDouble(this.lowerBound, this.upperBound);
 	}
 	
 	@Override

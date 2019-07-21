@@ -15,12 +15,26 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
- * Tests io.github.thepieterdc.random.numeric.integer.RandomIntegerGenerator.
+ * Tests io.github.thepieterdc.random.numerical.RandomIntegerGenerator.
  */
 public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
 	@Override
 	protected RandomGenerator<Integer> getDefaultRandomGenerator() {
 		return RandomIntegerGenerator.POSITIVE;
+	}
+	
+	/**
+	 * Tests .above(bound).
+	 */
+	@Test
+	public void testAbove() {
+		final int bound = 200;
+		final RandomGenerator<Integer> generator = RandomIntegerGenerator.above(bound);
+		Assert.assertThat(generator, notNullValue());
+		
+		for (int i = 0; i < 1000; ++i) {
+			Assert.assertTrue(generator.generate() >= bound);
+		}
 	}
 	
 	/**
@@ -33,7 +47,31 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 		Assert.assertThat(generator, notNullValue());
 		
 		for (int i = 0; i < 1000; ++i) {
-			Assert.assertTrue(generator.generate() < bound);
+			Assert.assertTrue(generator.generate() <= bound);
+		}
+	}
+	
+	/**
+	 * Tests .between(lower, upper) using invalid bounds.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testBetweenInvalid() {
+		RandomIntegerGenerator.between(1000, 999);
+	}
+	
+	/**
+	 * Tests .between(lower, upper).
+	 */
+	@Test
+	public void testBetween() {
+		final int lower = 200;
+		final int upper = 210;
+		final RandomGenerator<Integer> generator = RandomIntegerGenerator.between(lower, upper);
+		Assert.assertThat(generator, notNullValue());
+		
+		for (int i = 0; i < 1000; ++i) {
+			final int generated = generator.generate();
+			Assert.assertTrue(generated >= lower && generated <= upper);
 		}
 	}
 	
@@ -47,6 +85,21 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 		
 		for (int i = 0; i < 100; ++i) {
 			Assert.assertThat(generator.generate(), notNullValue());
+		}
+	}
+	
+	/**
+	 * Tests .positiveBelow(bound).
+	 */
+	@Test
+	public void testPositiveBelow() {
+		final int bound = 200;
+		final RandomGenerator<Integer> generator = RandomIntegerGenerator.positiveBelow(bound);
+		Assert.assertThat(generator, notNullValue());
+		
+		for (int i = 0; i < 1000; ++i) {
+			final int generated = generator.generate();
+			Assert.assertTrue(generated >= 0 && generated <= bound);
 		}
 	}
 }

@@ -30,7 +30,7 @@ public class RandomLongGenerator extends AbstractRandomGenerator<Long> {
 			throw new IllegalArgumentException("Upper bound must be higher than lower bound.");
 		}
 		this.lowerBound = lower;
-		this.upperBound = upper + ((upper == Long.MAX_VALUE) ? 0 : 1);
+		this.upperBound = upper + (upper == Long.MAX_VALUE ? 0 : 1);
 	}
 	
 	/**
