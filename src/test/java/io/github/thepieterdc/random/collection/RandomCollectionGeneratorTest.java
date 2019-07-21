@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import static org.hamcrest.CoreMatchers.*;
 
@@ -90,9 +90,9 @@ public class RandomCollectionGeneratorTest {
 	 */
 	@Test
 	public void testCapacity() {
-		final int amount = 10;
-		final Collection<Integer> ints = IntStream.range(0, amount).boxed().collect(Collectors.toSet());
-		final RandomGenerator<Integer> rng = RandomCollectionGenerator.of(ints);
+		final long amount = 10;
+		final Collection<Long> capacities = LongStream.range(0, amount).boxed().collect(Collectors.toSet());
+		final RandomGenerator<Long> rng = RandomCollectionGenerator.of(capacities);
 		Assert.assertThat(rng, notNullValue());
 		Assert.assertThat(rng.getCapacity(), is(amount));
 	}

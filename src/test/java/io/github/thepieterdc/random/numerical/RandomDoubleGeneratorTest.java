@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Double> {
 	@Override
 	protected RandomGenerator<Double> getDefaultRandomGenerator() {
-		return new RandomDoubleGenerator();
+		return RandomDoubleGenerator.DEFAULT;
 	}
 	
 	/**
@@ -28,7 +28,7 @@ public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Doubl
 	 */
 	@Test
 	public void testGenerate() {
-		final RandomGenerator<Double> generator = new RandomDoubleGenerator();
+		final RandomGenerator<Double> generator = this.getDefaultRandomGenerator();
 		Assert.assertThat(generator, notNullValue());
 		
 		for (int i = 0; i < 100; ++i) {

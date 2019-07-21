@@ -104,7 +104,7 @@ public class RandomPrimeGenerator extends AbstractRandomGenerator<Integer> {
 	}
 	
 	@Override
-	public int getCapacity() {
+	public long getCapacity() {
 		return PRIMES.length;
 	}
 }

@@ -19,7 +19,7 @@ public class RandomFloatGenerator extends AbstractRandomGenerator<Float> {
 	}
 	
 	@Override
-	public int getCapacity() {
-		return Integer.MAX_VALUE;
+	public long getCapacity() {
+		return Long.MAX_VALUE;
 	}
 }

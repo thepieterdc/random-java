@@ -28,7 +28,7 @@ public class RandomTimeGenerator extends AbstractRandomGenerator<LocalTime> {
 	}
 	
 	@Override
-	public int getCapacity() {
+	public long getCapacity() {
 		return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE;
 	}
 }

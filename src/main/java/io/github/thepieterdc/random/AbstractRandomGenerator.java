@@ -9,19 +9,19 @@ package io.github.thepieterdc.random;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * An abstract random generator.
  */
 public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
-	protected final Random rng;
+	protected final ThreadLocalRandom rng;
 	
 	/**
 	 * AbstractRandomGenerator constructor.
 	 */
 	protected AbstractRandomGenerator() {
-		this.rng = new Random();
+		this.rng = ThreadLocalRandom.current();
 	}
 	
 	@Override
@@ -45,5 +45,13 @@ public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
 			tries++;
 		}
 		return ret;
+	}
+	
+	@Override
+	public int getIntegerCapacity() {
+		if (this.getCapacity() > Integer.MAX_VALUE) {
+			return Integer.MAX_VALUE;
+		}
+		return (int) this.getCapacity();
 	}
 }

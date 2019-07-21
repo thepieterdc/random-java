@@ -53,7 +53,7 @@ abstract class AbstractRandomLetterGenerator extends AbstractRandomGenerator<Cha
 	}
 	
 	@Override
-	public int getCapacity() {
+	public long getCapacity() {
 		return letters.length();
 	}
 }

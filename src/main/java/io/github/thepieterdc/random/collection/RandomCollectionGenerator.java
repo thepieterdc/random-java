@@ -89,7 +89,7 @@ public class RandomCollectionGenerator<T> extends AbstractRandomGenerator<T> {
 	}
 	
 	@Override
-	public int getCapacity() {
+	public long getCapacity() {
 		return this.values.size();
 	}
 	

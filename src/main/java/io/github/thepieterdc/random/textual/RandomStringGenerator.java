@@ -41,7 +41,7 @@ public class RandomStringGenerator extends AbstractRandomGenerator<String> {
 	}
 	
 	@Override
-	public int getCapacity() {
+	public long getCapacity() {
 		return ALPHA_LENGTH * this.length;
 	}
 }

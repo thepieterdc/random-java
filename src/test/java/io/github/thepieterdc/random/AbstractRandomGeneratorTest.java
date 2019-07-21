@@ -56,8 +56,8 @@ public abstract class AbstractRandomGeneratorTest<T> {
 		final RandomGenerator<T> instance = this.getDefaultRandomGenerator();
 		Assert.assertThat(instance, notNullValue());
 		
-		final long capacity = instance.getCapacity();
-		instance.generate((int) capacity + 1, 1);
+		final int capacity = instance.getIntegerCapacity();
+		instance.generate(capacity + 1, 1);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public abstract class AbstractRandomGeneratorTest<T> {
 		final RandomGenerator<T> instance = this.getDefaultRandomGenerator();
 		Assert.assertThat(instance, notNullValue());
 		
-		final long capacity = instance.getCapacity();
+		final int capacity = instance.getIntegerCapacity();
 		final int amount = Math.min(10, (int) capacity);
 		
 		final Collection<T> generated = instance.generate(amount, 1000);

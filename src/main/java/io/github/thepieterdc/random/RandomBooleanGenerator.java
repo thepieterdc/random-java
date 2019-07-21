@@ -58,7 +58,7 @@ public class RandomBooleanGenerator extends AbstractRandomGenerator<Boolean> {
 	}
 	
 	@Override
-	public int getCapacity() {
+	public long getCapacity() {
 		if (this.trueProbability == 0 || this.trueProbability == 1.0) {
 			return 1;
 		}

@@ -5,7 +5,7 @@
  *
  * https://github.com/thepieterdc/random-java
  */
-package io.github.thepieterdc.random.numerical.integer;
+package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
@@ -15,14 +15,26 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
- * Tests io.github.thepieterdc.random.numeric.integer.BoundedRandomIntegerGenerator.
+ * Tests io.github.thepieterdc.random.numeric.integer.RandomIntegerGenerator.
  */
-public class BoundedRandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
-	private final static int DEFAULT_BOUND = 1000;
-	
+public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
 	@Override
 	protected RandomGenerator<Integer> getDefaultRandomGenerator() {
-		return new BoundedRandomIntegerGenerator(DEFAULT_BOUND);
+		return RandomIntegerGenerator.POSITIVE;
+	}
+	
+	/**
+	 * Tests .below(bound).
+	 */
+	@Test
+	public void testBelow() {
+		final int bound = 200;
+		final RandomGenerator<Integer> generator = RandomIntegerGenerator.below(bound);
+		Assert.assertThat(generator, notNullValue());
+		
+		for (int i = 0; i < 1000; ++i) {
+			Assert.assertTrue(generator.generate() < bound);
+		}
 	}
 	
 	/**
@@ -30,7 +42,7 @@ public class BoundedRandomIntegerGeneratorTest extends AbstractRandomGeneratorTe
 	 */
 	@Test
 	public void testGenerate() {
-		final RandomGenerator<Integer> generator = new RandomIntegerGenerator();
+		final RandomGenerator<Integer> generator = this.getDefaultRandomGenerator();
 		Assert.assertThat(generator, notNullValue());
 		
 		for (int i = 0; i < 100; ++i) {

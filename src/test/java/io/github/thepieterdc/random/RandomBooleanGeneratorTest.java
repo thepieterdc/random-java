@@ -31,7 +31,7 @@ public class RandomBooleanGeneratorTest extends AbstractRandomGeneratorTest {
 		final RandomGenerator<Boolean> rng = new RandomBooleanGenerator(1);
 		assertThat(rng, notNullValue());
 		
-		assertThat(rng.getCapacity(), is(1));
+		assertThat(rng.getCapacity(), is(1L));
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class RandomBooleanGeneratorTest extends AbstractRandomGeneratorTest {
 		final RandomGenerator<Boolean> rng = new RandomBooleanGenerator();
 		assertThat(rng, notNullValue());
 		
-		assertThat(rng.getCapacity(), is(2));
+		assertThat(rng.getCapacity(), is(2L));
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class RandomBooleanGeneratorTest extends AbstractRandomGeneratorTest {
 		final RandomGenerator<Boolean> rng = new RandomBooleanGenerator(0);
 		assertThat(rng, notNullValue());
 		
-		assertThat(rng.getCapacity(), is(1));
+		assertThat(rng.getCapacity(), is(1L));
 	}
 	
 	/**
