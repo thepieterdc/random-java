@@ -96,6 +96,7 @@ public class RandomCollectionGenerator<T> extends AbstractRandomGenerator<T> {
 	/**
 	 * Constructs a new RandomCollectionGenerator from a given collection.
 	 *
+	 * @param <T> type class of the collection elements
 	 * @param values the input values
 	 * @return the random generator instance
 	 */
