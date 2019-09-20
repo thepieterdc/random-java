@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public class RandomUppercaseLetterGeneratorTest extends AbstractRandomGeneratorTest<Character> {
 	@Override
-	protected RandomGenerator<Character> getDefaultRandomGenerator() {
+	protected RandomUppercaseLetterGenerator getDefaultRandomGenerator() {
 		return new RandomUppercaseLetterGenerator();
 	}
 	

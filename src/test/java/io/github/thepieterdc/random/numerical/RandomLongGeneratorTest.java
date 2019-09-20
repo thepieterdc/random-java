@@ -19,8 +19,8 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public class RandomLongGeneratorTest extends AbstractRandomGeneratorTest<Long> {
 	@Override
-	protected RandomGenerator<Long> getDefaultRandomGenerator() {
-		return RandomLongGenerator.POSITIVE;
+	protected RandomLongGenerator getDefaultRandomGenerator() {
+		return RandomLongGenerator.positive();
 	}
 	
 	/**

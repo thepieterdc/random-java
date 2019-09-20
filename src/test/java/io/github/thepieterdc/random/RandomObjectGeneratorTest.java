@@ -11,6 +11,8 @@ import io.github.thepieterdc.random.numerical.RandomIntegerGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
@@ -41,12 +43,25 @@ public class RandomObjectGeneratorTest extends AbstractRandomGeneratorTest<Rando
 		public int hashCode() {
 			return this.id;
 		}
+		
+		@Override
+		public String toString() {
+			return String.format("RandomObject[id=%d]", this.id);
+		}
 	}
 	
-	private static final RandomIntegerGenerator rig = RandomIntegerGenerator.POSITIVE;
+	private static final RandomIntegerGenerator rig = RandomIntegerGenerator.positive();
 	
 	@Override
-	protected RandomGenerator<RandomObject> getDefaultRandomGenerator() {
+	protected AbstractRandomGenerator<RandomObject> getDefaultRandomGenerator(final Random random) {
+		return new RandomObjectGenerator<>(
+			10,
+			() -> new RandomObject(random.nextInt())
+		);
+	}
+	
+	@Override
+	protected RandomObjectGenerator<RandomObject> getDefaultRandomGenerator() {
 		return new RandomObjectGenerator<>(
 			10,
 			() -> new RandomObject(rig.generate())

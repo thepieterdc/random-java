@@ -9,13 +9,14 @@ package io.github.thepieterdc.random;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * An abstract random generator.
  */
 public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
-	protected final ThreadLocalRandom rng;
+	protected Random rng;
 	
 	/**
 	 * AbstractRandomGenerator constructor.
@@ -53,5 +54,17 @@ public abstract class AbstractRandomGenerator<T> implements RandomGenerator<T> {
 			return Integer.MAX_VALUE;
 		}
 		return (int) this.getCapacity();
+	}
+	
+	/**
+	 * Sets the Random generator to use. This method can for example be used to
+	 * configure a seed.
+	 *
+	 * @param random the random generator
+	 * @return fluent
+	 */
+	public RandomGenerator<T> setRNG(final Random random) {
+		this.rng = random;
+		return this;
 	}
 }

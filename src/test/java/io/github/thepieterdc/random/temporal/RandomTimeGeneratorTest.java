@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public class RandomTimeGeneratorTest extends AbstractRandomGeneratorTest<LocalTime> {
 	@Override
-	protected RandomGenerator<LocalTime> getDefaultRandomGenerator() {
+	protected RandomTimeGenerator getDefaultRandomGenerator() {
 		return new RandomTimeGenerator();
 	}
 	
@@ -32,7 +32,7 @@ public class RandomTimeGeneratorTest extends AbstractRandomGeneratorTest<LocalTi
 	public void testGenerate() {
 		final RandomGenerator<LocalTime> rng = new RandomTimeGenerator();
 		
-		for(int i = 0; i < 1000; ++i) {
+		for (int i = 0; i < 1000; ++i) {
 			LocalTime timestamp = rng.generate();
 			Assert.assertThat(timestamp, notNullValue());
 		}

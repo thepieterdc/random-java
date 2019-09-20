@@ -19,7 +19,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public class RandomFloatGeneratorTest extends AbstractRandomGeneratorTest<Float> {
 	@Override
-	protected RandomGenerator<Float> getDefaultRandomGenerator() {
+	protected RandomFloatGenerator getDefaultRandomGenerator() {
 		return new RandomFloatGenerator();
 	}
 	

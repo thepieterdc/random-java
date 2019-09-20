@@ -1,8 +1,8 @@
-/**
+/*
  * Copyright (c) 2019. All rights reserved.
  *
  * @author Pieter De Clercq
- * <p>
+ *
  * https://github.com/thepieterdc/random-java
  */
 package io.github.thepieterdc.random.collection.datasets.sports.soccer;

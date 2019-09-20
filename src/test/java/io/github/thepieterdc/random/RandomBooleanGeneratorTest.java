@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class RandomBooleanGeneratorTest extends AbstractRandomGeneratorTest<Boolean> {
 	@Override
-	protected RandomGenerator<Boolean> getDefaultRandomGenerator() {
+	protected RandomBooleanGenerator getDefaultRandomGenerator() {
 		return new RandomBooleanGenerator();
 	}
 	

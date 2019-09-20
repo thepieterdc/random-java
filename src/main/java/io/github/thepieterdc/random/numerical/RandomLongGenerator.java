@@ -9,13 +9,13 @@ package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGenerator;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 /**
  * A random generator for long numbers.
  */
 public class RandomLongGenerator extends AbstractRandomGenerator<Long> {
-	public static final RandomLongGenerator ALL = RandomLongGenerator.below(Long.MAX_VALUE);
-	public static final RandomLongGenerator POSITIVE = RandomLongGenerator.positiveBelow(Long.MAX_VALUE);
-	
 	private final long lowerBound;
 	private final long upperBound;
 	
@@ -78,9 +78,28 @@ public class RandomLongGenerator extends AbstractRandomGenerator<Long> {
 		return new RandomLongGenerator(0, upper);
 	}
 	
+	/**
+	 * Creates a random long generator instance that generates longs in the
+	 * interval [0, Long.MAX_VALUE].
+	 *
+	 * @return the random long generator instance
+	 */
+	public static RandomLongGenerator positive() {
+		return RandomLongGenerator.above(0);
+	}
+	
 	@Override
 	public Long generate() {
-		return this.rng.nextLong(this.lowerBound, this.upperBound);
+		return this.generate(1, 1).stream()
+			.findFirst()
+			.orElse(this.lowerBound);
+	}
+	
+	@Override
+	public Collection<Long> generate(final int amount, final int maxTries) {
+		return this.rng.longs(amount, this.lowerBound, this.upperBound)
+			.boxed()
+			.collect(Collectors.toList());
 	}
 	
 	@Override

@@ -13,8 +13,6 @@ import io.github.thepieterdc.random.AbstractRandomGenerator;
  * A random generator for floating point (dp) numbers.
  */
 public class RandomDoubleGenerator extends AbstractRandomGenerator<Double> {
-	public static final RandomDoubleGenerator DEFAULT = RandomDoubleGenerator.positiveBelow(1);
-	
 	private static final double EPS = 0.00000000000000001;
 	
 	private final double lowerBound;
@@ -81,7 +79,8 @@ public class RandomDoubleGenerator extends AbstractRandomGenerator<Double> {
 	
 	@Override
 	public Double generate() {
-		return this.rng.nextDouble(this.lowerBound, this.upperBound);
+		return this.lowerBound +
+			(this.rng.nextDouble() * (this.upperBound - this.lowerBound));
 	}
 	
 	@Override

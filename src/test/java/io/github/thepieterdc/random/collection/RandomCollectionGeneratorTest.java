@@ -8,6 +8,7 @@
 package io.github.thepieterdc.random.collection;
 
 import io.github.thepieterdc.random.RandomGenerator;
+import io.github.thepieterdc.random.numerical.RandomLongGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
@@ -185,5 +187,27 @@ public class RandomCollectionGeneratorTest {
 	@Test(expected = RuntimeException.class)
 	public void testOfPathInvalid() {
 		RandomCollectionGenerator.of(Paths.get("/non/existing"));
+	}
+	
+	/**
+	 * Tests #setRNG().
+	 */
+	@Test
+	public void testSetRNG() {
+		final long seed = RandomLongGenerator.positive().generate();
+		
+		final RandomCollectionGenerator<Integer> one = RandomCollectionGenerator.of(Arrays.asList(
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+		)).setRNG(new Random(seed));
+		Assert.assertNotNull(one);
+		
+		final RandomCollectionGenerator<Integer> two = RandomCollectionGenerator.of(Arrays.asList(
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+		)).setRNG(new Random(seed));
+		Assert.assertNotNull(two);
+		
+		for (int i = 0; i < 100; ++i) {
+			Assert.assertEquals(one.generate(), two.generate());
+		}
 	}
 }

@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public class RandomStringGeneratorTest extends AbstractRandomGeneratorTest<String> {
 	@Override
-	protected RandomGenerator<String> getDefaultRandomGenerator() {
+	protected RandomStringGenerator getDefaultRandomGenerator() {
 		return new RandomStringGenerator(4);
 	}
 	
@@ -32,7 +32,7 @@ public class RandomStringGeneratorTest extends AbstractRandomGeneratorTest<Strin
 		final int length = 20;
 		final RandomGenerator<String> rng = new RandomStringGenerator(length);
 		
-		for(int i = 0; i < 1000; ++i) {
+		for (int i = 0; i < 1000; ++i) {
 			final String string = rng.generate();
 			Assert.assertThat(string, notNullValue());
 			Assert.assertThat(string.length(), is(length));

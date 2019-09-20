@@ -19,8 +19,8 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Double> {
 	@Override
-	protected RandomGenerator<Double> getDefaultRandomGenerator() {
-		return RandomDoubleGenerator.DEFAULT;
+	protected RandomDoubleGenerator getDefaultRandomGenerator() {
+		return RandomDoubleGenerator.between(0.0, 1.0);
 	}
 	
 	/**

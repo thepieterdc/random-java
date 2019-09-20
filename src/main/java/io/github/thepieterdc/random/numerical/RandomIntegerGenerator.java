@@ -9,13 +9,13 @@ package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGenerator;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 /**
  * A random generator for integer numbers.
  */
 public class RandomIntegerGenerator extends AbstractRandomGenerator<Integer> {
-	public static final RandomIntegerGenerator ALL = RandomIntegerGenerator.below(Integer.MAX_VALUE);
-	public static final RandomIntegerGenerator POSITIVE = RandomIntegerGenerator.positiveBelow(Integer.MAX_VALUE);
-	
 	private final int lowerBound;
 	private final int upperBound;
 	
@@ -78,9 +78,28 @@ public class RandomIntegerGenerator extends AbstractRandomGenerator<Integer> {
 		return new RandomIntegerGenerator(0, upper);
 	}
 	
+	/**
+	 * Creates a random integer generator instance that generates integers in
+	 * the interval [0, Integer.MAX_VALUE].
+	 *
+	 * @return the random integer generator instance
+	 */
+	public static RandomIntegerGenerator positive() {
+		return RandomIntegerGenerator.above(0);
+	}
+	
 	@Override
 	public Integer generate() {
-		return this.rng.nextInt(this.lowerBound, this.upperBound);
+		return this.generate(1, 1).stream()
+			.findFirst()
+			.orElse(this.lowerBound);
+	}
+	
+	@Override
+	public Collection<Integer> generate(final int amount, final int maxTries) {
+		return this.rng.ints(amount, this.lowerBound, this.upperBound)
+			.boxed()
+			.collect(Collectors.toList());
 	}
 	
 	@Override

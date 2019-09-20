@@ -32,7 +32,8 @@ public class RandomCollectionGenerator<T> extends AbstractRandomGenerator<T> {
 	 * @param values the input data
 	 */
 	private RandomCollectionGenerator(final Collection<T> values) {
-		if (values.isEmpty()) throw new IllegalArgumentException("Collection may not be empty.");
+		if (values.isEmpty())
+			throw new IllegalArgumentException("Collection may not be empty.");
 		this.values = new ArrayList<>(values);
 	}
 	
@@ -96,7 +97,7 @@ public class RandomCollectionGenerator<T> extends AbstractRandomGenerator<T> {
 	/**
 	 * Constructs a new RandomCollectionGenerator from a given collection.
 	 *
-	 * @param <T> type class of the collection elements
+	 * @param <T>    type class of the collection elements
 	 * @param values the input values
 	 * @return the random generator instance
 	 */
@@ -133,5 +134,17 @@ public class RandomCollectionGenerator<T> extends AbstractRandomGenerator<T> {
 		} catch (final IOException ex) {
 			throw new RuntimeException(ex.getMessage(), ex);
 		}
+	}
+	
+	/**
+	 * Sets the Random generator to use. This method can for example be used to
+	 * configure a seed.
+	 *
+	 * @param random the random generator
+	 * @return fluent
+	 */
+	public RandomCollectionGenerator<T> setRNG(final Random random) {
+		this.rng = random;
+		return this;
 	}
 }

@@ -7,10 +7,12 @@
  */
 package io.github.thepieterdc.random;
 
+import io.github.thepieterdc.random.numerical.RandomLongGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -20,11 +22,23 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 public abstract class AbstractRandomGeneratorTest<T> {
 	/**
+	 * Gets a default seeded random generator instance to test things on.
+	 *
+	 * @param random the random seed
+	 * @return random generator instance
+	 */
+	protected AbstractRandomGenerator<T> getDefaultRandomGenerator(final Random random) {
+		final AbstractRandomGenerator<T> ret = this.getDefaultRandomGenerator();
+		ret.setRNG(random);
+		return ret;
+	}
+	
+	/**
 	 * Gets a default random generator instance to test things on.
 	 *
 	 * @return random generator instance
 	 */
-	abstract protected RandomGenerator<T> getDefaultRandomGenerator();
+	abstract protected AbstractRandomGenerator<T> getDefaultRandomGenerator();
 	
 	/**
 	 * Tests #getCapacity().
@@ -74,5 +88,23 @@ public abstract class AbstractRandomGeneratorTest<T> {
 		final Collection<T> generated = instance.generate(amount, 1000);
 		Assert.assertThat(generated, notNullValue());
 		Assert.assertThat(generated.size(), is(amount));
+	}
+	
+	/**
+	 * Tests #setRNG().
+	 */
+	@Test
+	public void testSetRNG() {
+		final long seed = RandomLongGenerator.positive().generate();
+		
+		final RandomGenerator<T> one = this.getDefaultRandomGenerator(new Random(seed));
+		Assert.assertNotNull(one);
+		
+		final RandomGenerator<T> two = this.getDefaultRandomGenerator(new Random(seed));
+		Assert.assertNotNull(two);
+		
+		for (int i = 0; i < 100; ++i) {
+			Assert.assertEquals(one.generate(), two.generate());
+		}
 	}
 }

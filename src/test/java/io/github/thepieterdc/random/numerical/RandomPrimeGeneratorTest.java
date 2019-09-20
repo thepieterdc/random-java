@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.not;
  */
 public class RandomPrimeGeneratorTest extends AbstractRandomGeneratorTest<Integer> {
 	@Override
-	protected RandomGenerator<Integer> getDefaultRandomGenerator() {
+	protected RandomPrimeGenerator getDefaultRandomGenerator() {
 		return new RandomPrimeGenerator();
 	}
 	
