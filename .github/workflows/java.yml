@@ -1,0 +1,38 @@
+name: Java
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    name: Build on jdk ${{ matrix.java }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: true
+      matrix:
+        java: [1.8, 11.x.x, 12.x.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java}}
+      - name: Cache the dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+      - name: Upload the coverage report
+        uses: codecov/codecov-action@v1.0.5
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
