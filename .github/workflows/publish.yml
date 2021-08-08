@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -20,6 +20,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
+          server-id: github
+          server-password: GITHUB_TOKEN
       - name: Configure git
         run: |
           git config user.email "actions@github.com"
