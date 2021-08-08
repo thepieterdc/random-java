@@ -37,18 +37,15 @@
         <url>https://github.com/thepieterdc/random-java</url>
     </issueManagement>
 
-    <ciManagement>
-        <system>TravisCI</system>
-        <url>https://travis.com/thepieterdc/random-java</url>
-    </ciManagement>
-
     <properties>
-        <jdk.version>1.8</jdk.version>
-        <junit.version>4.13.1</junit.version>
-        <maven.compiler.version>3.8.0</maven.compiler.version>
-        <maven.jar.version>3.1.0</maven.jar.version>
-        <maven.javadoc.version>3.1.0</maven.javadoc.version>
-        <maven.source.version>3.0.1</maven.source.version>
+        <jacoco.version>0.8.7</jacoco.version>
+        <jdk.version>11</jdk.version>
+        <junit.version>4.13.2</junit.version>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.jar.version>3.2.0</maven.jar.version>
+        <maven.javadoc.version>3.3.0</maven.javadoc.version>
+        <maven.release.version>3.0.0-M4</maven.release.version>
+        <maven.source.version>3.2.1</maven.source.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -104,7 +101,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.2</version>
+                    <version>${jacoco.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -126,7 +123,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.2</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -145,7 +142,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${maven.release.version}</version>
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
                 </configuration>
@@ -155,9 +152,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-thepieterdc-random-java</id>
-            <name>thepieterdc-random-java</name>
-            <url>https://api.bintray.com/maven/thepieterdc/random-java/random-java/;publish=1</url>
+            <id>github</id>
+            <name>GitHub Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/thepieterdc/random-java</url>
         </repository>
     </distributionManagement>
 </project>

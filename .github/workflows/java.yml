@@ -14,17 +14,18 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        java: [1.8, 11.x.x, 12.x.x]
+        java: [11.x.x, 12.x.x, 15.x.x]
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
+          distribution: 'zulu'
           java-version: ${{ matrix.java}}
       - name: Cache the dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -33,6 +34,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Upload the coverage report
-        uses: codecov/codecov-action@v1.0.5
+        uses: codecov/codecov-action@v2
         with:
           token: ${{secrets.CODECOV_TOKEN}}
