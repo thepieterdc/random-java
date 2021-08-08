@@ -11,7 +11,7 @@
 
     <groupId>io.github.thepieterdc.random</groupId>
     <artifactId>random</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Random</name>
     <description>Random generators, for usage in unit tests</description>
     <packaging>jar</packaging>
@@ -27,7 +27,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/thepieterdc/random-java.git</connection>
-        <developerConnection>scm:git:git@github.com:thepieterdc/random-java.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/thepieterdc/random-java.git</developerConnection>
         <url>git@github.com:thepieterdc/random-java.git</url>
         <tag>HEAD</tag>
     </scm>
@@ -42,11 +42,13 @@
         <jdk.version>11</jdk.version>
         <junit.version>4.13.2</junit.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.help.version>3.2.0</maven.help.version>
         <maven.jar.version>3.2.0</maven.jar.version>
         <maven.javadoc.version>3.3.0</maven.javadoc.version>
         <maven.release.version>3.0.0-M4</maven.release.version>
         <maven.source.version>3.2.1</maven.source.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.scm.id>github</project.scm.id>
     </properties>
 
     <dependencies>
@@ -138,6 +140,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>${maven.help.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
