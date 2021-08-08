@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +34,30 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: Publish package
-        run: mvn --batch-mode release:prepare release:perform
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get the release version
+        id: version
+        run: |
+          VERSION_RAW=v$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          VERSION="${VERSION_RAW//-SNAPSHOT/}"
+          echo "::set-output name=version::$VERSION"
+#      - name: Publish package
+#        run: mvn --batch-mode release:prepare release:perform
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Create release
+#        uses: actions/create-release@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          draft: false
+#          prerelease: false
+#          release_name: ${{ steps.version.outputs.version }}
+#          tag_name: ${{ steps.version.outputs.version }}
+      - name: Open a pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: master
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_assignee: thepieterdc
+          pr_body: Merge the maven release commits into the main branch.
+          pr_title: Release ${{ steps.version.outputs.version }}
