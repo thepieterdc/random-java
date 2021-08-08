@@ -1,9 +1,9 @@
-name: Publish to GitHub Packages
+name: Publish snapshot to GitHub Packages
 
 on:
   push:
     branches:
-      - release
+      - master
 
 jobs:
   publish:
@@ -20,10 +20,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
-      - name: Configure git
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
       - name: Cache the dependencies
         uses: actions/cache@v2
         with:
@@ -32,6 +28,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Publish package
-        run: mvn --batch-mode release:prepare release:perform
+        run: mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
