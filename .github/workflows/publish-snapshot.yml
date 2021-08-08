@@ -20,6 +20,9 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
+          server-id: github
+          server-password: GITHUB_TOKEN
+          server-username: GITHUB_USER
       - name: Cache the dependencies
         uses: actions/cache@v2
         with:
@@ -31,3 +34,4 @@ jobs:
         run: mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: thepieterdc
