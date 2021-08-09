@@ -11,7 +11,7 @@
 
     <groupId>io.github.thepieterdc.random</groupId>
     <artifactId>random</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>Random</name>
     <description>Random generators, for usage in unit tests</description>
     <packaging>jar</packaging>
@@ -29,7 +29,7 @@
         <connection>scm:git:https://github.com/thepieterdc/random-java.git</connection>
         <developerConnection>scm:git:https://github.com/thepieterdc/random-java.git</developerConnection>
         <url>git@github.com:thepieterdc/random-java.git</url>
-        <tag>v1.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
