@@ -1,0 +1,10 @@
+io.github.thepieterdc.random
+io.github.thepieterdc.random.collection
+io.github.thepieterdc.random.collection.datasets
+io.github.thepieterdc.random.collection.datasets.geo
+io.github.thepieterdc.random.collection.datasets.sports
+io.github.thepieterdc.random.collection.datasets.sports.soccer
+io.github.thepieterdc.random.numerical
+io.github.thepieterdc.random.temporal
+io.github.thepieterdc.random.textual
+io.github.thepieterdc.random.textual.letter
