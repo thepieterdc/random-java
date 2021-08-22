@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish release
 
 on:
   push:
@@ -6,7 +6,39 @@ on:
       - release
 
 jobs:
+  docs:
+    name: Publish docs to GitHub Pages
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 11
+          server-id: github
+          server-password: GITHUB_TOKEN
+      - name: Cache the dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Generate the documentation
+        run: mvn --batch-mode javadoc:javadoc
+      - name: Publish the documentation
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: docs
+
   publish:
+    name: Publish artifact to GitHub Packages
     runs-on: ubuntu-latest
 
     permissions:
