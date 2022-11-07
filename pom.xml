@@ -45,7 +45,7 @@
         <maven.help.version>3.3.0</maven.help.version>
         <maven.jar.version>3.3.0</maven.jar.version>
         <maven.javadoc.version>3.4.1</maven.javadoc.version>
-        <maven.release.version>3.0.0-M6</maven.release.version>
+        <maven.release.version>3.0.0-M7</maven.release.version>
         <maven.source.version>3.2.1</maven.source.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.scm.id>github</project.scm.id>
