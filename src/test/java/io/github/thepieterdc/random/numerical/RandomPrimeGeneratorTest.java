@@ -9,11 +9,10 @@ package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests io.github.thepieterdc.random.numeric.RandomPrimeGenerator.
@@ -23,7 +22,7 @@ public class RandomPrimeGeneratorTest extends AbstractRandomGeneratorTest<Intege
 	protected RandomPrimeGenerator getDefaultRandomGenerator() {
 		return new RandomPrimeGenerator();
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
@@ -32,9 +31,9 @@ public class RandomPrimeGeneratorTest extends AbstractRandomGeneratorTest<Intege
 		final RandomGenerator<Integer> generator = new RandomPrimeGenerator();
 		for (int i = 2; i <= 200; ++i) {
 			final int number = generator.generate();
-			Assert.assertTrue(number > 1);
+			assertTrue(number > 1);
 			if (number != i) {
-				Assert.assertThat(number % i, not(is(0)));
+				assertNotEquals(number % i, 0);
 			}
 		}
 	}

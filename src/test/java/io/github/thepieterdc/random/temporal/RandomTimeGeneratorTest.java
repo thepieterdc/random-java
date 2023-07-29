@@ -9,12 +9,11 @@ package io.github.thepieterdc.random.temporal;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Tests io.github.thepieterdc.random.temporal.RandomTimeGenerator.
@@ -24,17 +23,17 @@ public class RandomTimeGeneratorTest extends AbstractRandomGeneratorTest<LocalTi
 	protected RandomTimeGenerator getDefaultRandomGenerator() {
 		return new RandomTimeGenerator();
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
 	@Test
 	public void testGenerate() {
 		final RandomGenerator<LocalTime> rng = new RandomTimeGenerator();
-		
+
 		for (int i = 0; i < 1000; ++i) {
 			LocalTime timestamp = rng.generate();
-			Assert.assertThat(timestamp, notNullValue());
+			assertNotNull(timestamp);
 		}
 	}
 }

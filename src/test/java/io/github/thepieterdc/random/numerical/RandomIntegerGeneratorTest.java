@@ -9,10 +9,9 @@ package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests io.github.thepieterdc.random.numerical.RandomIntegerGenerator.
@@ -22,7 +21,7 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 	protected RandomIntegerGenerator getDefaultRandomGenerator() {
 		return RandomIntegerGenerator.positive();
 	}
-	
+
 	/**
 	 * Tests .above(bound).
 	 */
@@ -30,13 +29,13 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 	public void testAbove() {
 		final int bound = 200;
 		final RandomGenerator<Integer> generator = RandomIntegerGenerator.above(bound);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
-			Assert.assertTrue(generator.generate() >= bound);
+			assertTrue(generator.generate() >= bound);
 		}
 	}
-	
+
 	/**
 	 * Tests .below(bound).
 	 */
@@ -44,21 +43,23 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 	public void testBelow() {
 		final int bound = 200;
 		final RandomGenerator<Integer> generator = RandomIntegerGenerator.below(bound);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
-			Assert.assertTrue(generator.generate() <= bound);
+			assertTrue(generator.generate() <= bound);
 		}
 	}
-	
+
 	/**
 	 * Tests .between(lower, upper) using invalid bounds.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testBetweenInvalid() {
-		RandomIntegerGenerator.between(1000, 999);
+		assertThrows(IllegalArgumentException.class, () ->
+			RandomIntegerGenerator.between(1000, 999)
+		);
 	}
-	
+
 	/**
 	 * Tests .between(lower, upper).
 	 */
@@ -67,27 +68,27 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 		final int lower = 200;
 		final int upper = 210;
 		final RandomGenerator<Integer> generator = RandomIntegerGenerator.between(lower, upper);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
 			final int generated = generator.generate();
-			Assert.assertTrue(generated >= lower && generated <= upper);
+			assertTrue(generated >= lower && generated <= upper);
 		}
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
 	@Test
 	public void testGenerate() {
 		final RandomGenerator<Integer> generator = this.getDefaultRandomGenerator();
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 100; ++i) {
-			Assert.assertThat(generator.generate(), notNullValue());
+			assertNotNull(generator.generate());
 		}
 	}
-	
+
 	/**
 	 * Tests .positiveBelow(bound).
 	 */
@@ -95,11 +96,11 @@ public class RandomIntegerGeneratorTest extends AbstractRandomGeneratorTest<Inte
 	public void testPositiveBelow() {
 		final int bound = 200;
 		final RandomGenerator<Integer> generator = RandomIntegerGenerator.positiveBelow(bound);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
 			final int generated = generator.generate();
-			Assert.assertTrue(generated >= 0 && generated <= bound);
+			assertTrue(generated >= 0 && generated <= bound);
 		}
 	}
 }

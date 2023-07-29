@@ -9,8 +9,7 @@ package io.github.thepieterdc.random.collection;
 
 import io.github.thepieterdc.random.RandomGenerator;
 import io.github.thepieterdc.random.numerical.RandomLongGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -20,7 +19,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests io.github.thepieterdc.random.collection.RandomCollectionGeneratorTest.
@@ -32,61 +31,61 @@ public class RandomCollectionGeneratorTest {
 	@Test
 	public void testAdd() {
 		final RandomCollectionGenerator<String> generator = RandomCollectionGenerator.of(Collections.singleton("test"));
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		int test2counts = 0;
 		for (int i = 0; i < 100; ++i) {
 			final String generated = generator.generate();
-			Assert.assertThat(generated, notNullValue());
+			assertNotNull(generated);
 			test2counts += generated.equalsIgnoreCase("test2") ? 1 : 0;
 		}
-		
-		Assert.assertThat(test2counts, is(0));
-		
+
+		assertEquals(test2counts, 0);
+
 		generator.add("test2");
-		
+
 		for (int i = 0; i < 100; ++i) {
 			final String generated = generator.generate();
-			Assert.assertThat(generated, notNullValue());
+			assertNotNull(generated);
 			test2counts += generated.equalsIgnoreCase("test2") ? 1 : 0;
 		}
-		
-		Assert.assertThat(test2counts == 0, is(false));
+
+		assertNotEquals(0, test2counts);
 	}
-	
+
 	/**
 	 * Tests #addCollection().
 	 */
 	@Test
 	public void testAddCollection() {
 		final RandomCollectionGenerator<String> generator = RandomCollectionGenerator.of(Collections.singleton("test"));
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		int test2counts = 0;
 		int test3counts = 0;
 		for (int i = 0; i < 100; ++i) {
 			final String generated = generator.generate();
-			Assert.assertThat(generated, notNullValue());
+			assertNotNull(generated);
 			test2counts += generated.equalsIgnoreCase("test2") ? 1 : 0;
 			test3counts += generated.equalsIgnoreCase("test3") ? 1 : 0;
 		}
-		
-		Assert.assertThat(test2counts, is(0));
-		Assert.assertThat(test3counts, is(0));
-		
+
+		assertEquals(test2counts, 0);
+		assertEquals(test3counts, 0);
+
 		generator.addAll(Arrays.asList("test2", "test3"));
-		
+
 		for (int i = 0; i < 100; ++i) {
 			final String generated = generator.generate();
-			Assert.assertThat(generated, notNullValue());
+			assertNotNull(generated);
 			test2counts += generated.equalsIgnoreCase("test2") ? 1 : 0;
 			test3counts += generated.equalsIgnoreCase("test3") ? 1 : 0;
 		}
-		
-		Assert.assertThat(test2counts == 0, is(false));
-		Assert.assertThat(test3counts == 0, is(false));
+
+		assertNotEquals(0, test2counts);
+		assertNotEquals(0, test3counts);
 	}
-	
+
 	/**
 	 * Tests #capacity().
 	 */
@@ -95,18 +94,20 @@ public class RandomCollectionGeneratorTest {
 		final long amount = 10;
 		final Collection<Long> capacities = LongStream.range(0, amount).boxed().collect(Collectors.toSet());
 		final RandomGenerator<Long> rng = RandomCollectionGenerator.of(capacities);
-		Assert.assertThat(rng, notNullValue());
-		Assert.assertThat(rng.getCapacity(), is(amount));
+		assertNotNull(rng);
+		assertEquals(rng.getCapacity(), amount);
 	}
-	
+
 	/**
 	 * Tests the constructor using an empty collection.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testEmptyCollection() {
-		RandomCollectionGenerator.of(Collections.emptySet());
+		assertThrows(IllegalArgumentException.class, () ->
+			RandomCollectionGenerator.of(Collections.emptySet())
+		);
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
@@ -115,99 +116,107 @@ public class RandomCollectionGeneratorTest {
 		final Collection<String> data = Arrays.asList(
 			"Test1", "Test2", "Test3", "Test4"
 		);
-		
+
 		final RandomGenerator<String> generator = RandomCollectionGenerator.of(data);
-		
+
 		for (int i = 0; i < 100; ++i) {
-			Assert.assertThat(data, hasItem(generator.generate()));
+			assertTrue(data.contains(generator.generate()));
 		}
 	}
-	
+
 	/**
 	 * Tests #generate(amount, maxtries) using a negative amount
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testGenerateAmountNegative() {
 		final RandomGenerator<String> instance = RandomCollectionGenerator.of(Collections.singleton("test"));
-		Assert.assertThat(instance, notNullValue());
-		
-		instance.generate(-1, 1);
+		assertNotNull(instance);
+
+		assertThrows(IllegalArgumentException.class, () ->
+			instance.generate(-1, 1)
+		);
 	}
-	
+
 	/**
 	 * Tests #generate(amount, maxtries) using an amount value that is higher
 	 * than the capacity.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testGenerateAmountTooHigh() {
 		final RandomGenerator<String> instance = RandomCollectionGenerator.of(Collections.singleton("test"));
-		Assert.assertThat(instance, notNullValue());
-		
+		assertNotNull(instance);
+
 		final long capacity = instance.getCapacity();
-		instance.generate((int) capacity + 1, 1);
+		assertThrows(IllegalArgumentException.class, () ->
+			instance.generate((int) capacity + 1, 1)
+		);
 	}
-	
+
 	/**
 	 * Tests #generate(amount, maxtries).
 	 */
 	@Test
 	public void testGenerateMultiple() {
 		final Collection<String> data = Arrays.asList("a", "b", "c");
-		Assert.assertThat(data, notNullValue());
-		
+		assertNotNull(data);
+
 		final RandomGenerator<String> instance = RandomCollectionGenerator.of(data);
-		Assert.assertThat(instance, notNullValue());
-		
+		assertNotNull(instance);
+
 		final Collection<String> generated = instance.generate(data.size(), 1000);
-		Assert.assertThat(generated, notNullValue());
-		Assert.assertThat(generated.size(), is(data.size()));
+		assertNotNull(generated);
+		assertEquals(generated.size(), data.size());
 	}
-	
+
 	/**
 	 * Tests .of(Dataset) using an existing dataset.
 	 */
 	@Test
 	public void testOfDataset() {
 		final Dataset existing = () -> "letters.txt";
-		Assert.assertThat(RandomCollectionGenerator.of(existing), notNullValue());
+		assertNotNull(RandomCollectionGenerator.of(existing));
 	}
-	
+
 	/**
 	 * Tests .of() using a non-existing dataset.
 	 */
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void testOfNonExistingDataset() {
 		final Dataset nonExisting = () -> "/non/existing";
-		RandomCollectionGenerator.of(nonExisting);
+		assertThrows(RuntimeException.class, () ->
+			RandomCollectionGenerator.of(nonExisting)
+		);
 	}
-	
+
 	/**
 	 * Tests .of(Path) using an invalid file.
 	 */
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void testOfPathInvalid() {
-		RandomCollectionGenerator.of(Paths.get("/non/existing"));
+		assertThrows(RuntimeException.class, () ->
+			RandomCollectionGenerator.of(Paths.get("/non/existing"))
+		);
 	}
-	
+
 	/**
 	 * Tests #setRNG().
 	 */
 	@Test
 	public void testSetRNG() {
 		final long seed = RandomLongGenerator.positive().generate();
-		
+
 		final RandomCollectionGenerator<Integer> one = RandomCollectionGenerator.of(Arrays.asList(
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 		)).setRNG(new Random(seed));
-		Assert.assertNotNull(one);
-		
+		assertNotNull(one);
+
 		final RandomCollectionGenerator<Integer> two = RandomCollectionGenerator.of(Arrays.asList(
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 		)).setRNG(new Random(seed));
-		Assert.assertNotNull(two);
-		
+		assertNotNull(two);
+
 		for (int i = 0; i < 100; ++i) {
-			Assert.assertEquals(one.generate(), two.generate());
+			assertEquals(one.generate(), two.generate());
 		}
 	}
 }

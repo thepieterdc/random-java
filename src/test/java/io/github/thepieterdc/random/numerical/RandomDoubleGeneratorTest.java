@@ -9,10 +9,9 @@ package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests io.github.thepieterdc.random.numerical.RandomDoubleGenerator.
@@ -22,7 +21,7 @@ public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Doubl
 	protected RandomDoubleGenerator getDefaultRandomGenerator() {
 		return RandomDoubleGenerator.between(0.0, 1.0);
 	}
-	
+
 	/**
 	 * Tests .above(bound).
 	 */
@@ -30,13 +29,13 @@ public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Doubl
 	public void testAbove() {
 		final double bound = 200.0;
 		final RandomGenerator<Double> generator = RandomDoubleGenerator.above(bound);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
-			Assert.assertTrue(generator.generate() >= bound);
+			assertTrue(generator.generate() >= bound);
 		}
 	}
-	
+
 	/**
 	 * Tests .below(bound).
 	 */
@@ -44,22 +43,24 @@ public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Doubl
 	public void testBelow() {
 		final double bound = 200.0;
 		final RandomGenerator<Double> generator = RandomDoubleGenerator.below(bound);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
 			final double generated = generator.generate();
-			Assert.assertTrue(generated <= bound);
+			assertTrue(generated <= bound);
 		}
 	}
-	
+
 	/**
 	 * Tests .between(lower, upper) using invalid bounds.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testBetweenInvalid() {
-		RandomDoubleGenerator.between(1000, 999);
+		assertThrows(IllegalArgumentException.class, () ->
+			RandomDoubleGenerator.between(1000, 999)
+		);
 	}
-	
+
 	/**
 	 * Tests .between(lower, upper).
 	 */
@@ -68,27 +69,27 @@ public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Doubl
 		final double lower = 200.0;
 		final double upper = 210.0;
 		final RandomGenerator<Double> generator = RandomDoubleGenerator.between(lower, upper);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
 			final double generated = generator.generate();
-			Assert.assertTrue(generated >= lower && generated <= upper);
+			assertTrue(generated >= lower && generated <= upper);
 		}
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
 	@Test
 	public void testGenerate() {
 		final RandomGenerator<Double> generator = this.getDefaultRandomGenerator();
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 100; ++i) {
-			Assert.assertThat(generator.generate(), notNullValue());
+			assertNotNull(generator.generate());
 		}
 	}
-	
+
 	/**
 	 * Tests .positiveBelow(bound).
 	 */
@@ -96,11 +97,11 @@ public class RandomDoubleGeneratorTest extends AbstractRandomGeneratorTest<Doubl
 	public void testPositiveBelow() {
 		final double bound = 200.0;
 		final RandomGenerator<Double> generator = RandomDoubleGenerator.positiveBelow(bound);
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 1000; ++i) {
 			final double generated = generator.generate();
-			Assert.assertTrue(generated >= 0 && generated <= bound);
+			assertTrue(generated >= 0 && generated <= bound);
 		}
 	}
 }

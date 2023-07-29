@@ -9,10 +9,9 @@ package io.github.thepieterdc.random.numerical;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Tests io.github.thepieterdc.random.numeric.RandomFloatGenerator.
@@ -22,17 +21,17 @@ public class RandomFloatGeneratorTest extends AbstractRandomGeneratorTest<Float>
 	protected RandomFloatGenerator getDefaultRandomGenerator() {
 		return new RandomFloatGenerator();
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
 	@Test
 	public void testGenerate() {
 		final RandomGenerator<Float> generator = new RandomFloatGenerator();
-		Assert.assertThat(generator, notNullValue());
-		
+		assertNotNull(generator);
+
 		for (int i = 0; i < 100; ++i) {
-			Assert.assertThat(generator.generate(), notNullValue());
+			assertNotNull(generator.generate());
 		}
 	}
 }

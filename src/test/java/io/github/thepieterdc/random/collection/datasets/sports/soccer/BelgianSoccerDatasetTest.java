@@ -8,11 +8,10 @@
 package io.github.thepieterdc.random.collection.datasets.sports.soccer;
 
 import io.github.thepieterdc.random.collection.Dataset;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Tests io.github.thepieterdc.random.collection.datasets.sports.soccer.BelgianSoccerDataset
@@ -24,7 +23,8 @@ public class BelgianSoccerDatasetTest {
 	@Test
 	public void testConstant() {
 		final Dataset dataset = BelgianSoccerDataset.PRO_LEAGUE_TEAMS_2018_2019;
-		Assert.assertThat(dataset, notNullValue());
-		Assert.assertThat(dataset.getPath().isEmpty(), is(false));
+		assertNotNull(dataset);
+
+		assertFalse(dataset.getPath().isEmpty());
 	}
 }
