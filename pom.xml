@@ -11,7 +11,7 @@
 
     <groupId>io.github.thepieterdc.random</groupId>
     <artifactId>random</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <name>Random</name>
     <description>Random generators, for usage in unit tests</description>
     <packaging>jar</packaging>
