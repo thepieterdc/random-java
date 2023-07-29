@@ -1,6 +1,6 @@
 # random-java
 
-![Build Status](https://img.shields.io/github/workflow/status/thepieterdc/random-java/Java)
+[![Java](https://github.com/thepieterdc/random-java/actions/workflows/java.yml/badge.svg)](https://github.com/thepieterdc/random-java/actions/workflows/java.yml)
 [![codecov](https://codecov.io/gh/thepieterdc/random-java/branch/master/graph/badge.svg)](https://codecov.io/gh/thepieterdc/random-java)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b458bc137c2e4c309a29840d03e4f2ad)](https://www.codacy.com/manual/thepieterdc/random-java)
 

@@ -9,11 +9,10 @@ package io.github.thepieterdc.random.textual.letter;
 
 import io.github.thepieterdc.random.AbstractRandomGeneratorTest;
 import io.github.thepieterdc.random.RandomGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests io.github.thepieterdc.random.textual.letter.RandomLowercaseLetterGenerator.
@@ -23,18 +22,18 @@ public class RandomLowercaseLetterGeneratorTest extends AbstractRandomGeneratorT
 	protected RandomLowercaseLetterGenerator getDefaultRandomGenerator() {
 		return new RandomLowercaseLetterGenerator();
 	}
-	
+
 	/**
 	 * Tests #generate().
 	 */
 	@Test
 	public void testGenerate() {
 		final RandomGenerator<Character> rng = new RandomLowercaseLetterGenerator();
-		
-		for(int i = 0; i < 1000; ++i) {
+
+		for (int i = 0; i < 1000; ++i) {
 			final Character letter = rng.generate();
-			Assert.assertThat(letter, notNullValue());
-			Assert.assertThat(Character.isAlphabetic(letter), is(true));
+			assertNotNull(letter);
+			assertTrue(Character.isAlphabetic(letter));
 		}
 	}
 }
