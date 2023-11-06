@@ -40,7 +40,7 @@
     <properties>
         <jacoco.version>0.8.10</jacoco.version>
         <jdk.version>11</jdk.version>
-        <junit.version>5.10.0</junit.version>
+        <junit.version>5.10.1</junit.version>
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven.help.version>3.4.0</maven.help.version>
         <maven.jar.version>3.3.0</maven.jar.version>
