@@ -14,9 +14,9 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: 11
@@ -32,7 +32,7 @@ jobs:
       - name: Generate the documentation
         run: mvn --batch-mode javadoc:javadoc
       - name: Publish the documentation
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages
           folder: docs
@@ -47,9 +47,9 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: 11

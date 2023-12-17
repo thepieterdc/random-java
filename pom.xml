@@ -38,7 +38,7 @@
     </issueManagement>
 
     <properties>
-        <jacoco.version>0.8.10</jacoco.version>
+        <jacoco.version>0.8.11</jacoco.version>
         <jdk.version>11</jdk.version>
         <junit.version>5.10.1</junit.version>
         <maven.compiler.version>3.11.0</maven.compiler.version>
