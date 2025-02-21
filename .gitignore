@@ -76,6 +76,7 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+docs/
 target/
 pom.xml.tag
 pom.xml.releaseBackup
